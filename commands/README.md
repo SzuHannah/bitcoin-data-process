@@ -1,5 +1,5 @@
 # bitcoin-neo4j-notes
-Documenting my notes for constructing neo4j database for bitcoin data  
+Documenting some useful command for constructing neo4j database for bitcoin data  
 ## Useful commands  
 ### pre-processing bitcoin-csv files  
 1. from blockxxxx_xxxx.csv to input_rel and output_rel(split transaction records of each block into input and output)  
