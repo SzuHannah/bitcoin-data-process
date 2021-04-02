@@ -1,2 +1,3 @@
 # bitcoin-data-process
-this repo records one way to process bitcoin data
+This repo records one way to process bitcoin data
+(Documentation in progress)
