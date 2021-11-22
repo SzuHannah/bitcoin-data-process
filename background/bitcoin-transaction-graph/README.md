@@ -1,5 +1,3 @@
 # Bitcoin transaction graph
 
-{% hint style="info" %}
-**Good to know:** your product docs aren't just a reference of all your features! use them to encourage folks to perform certain actions and discover the value in your product.
-{% endhint %}
+Each transaction was composed of inputs and outputs. Outputs contain information such as the amount of money and the addresses that the money was sent. Inputs were references to previous unspent outputs. Thus, by extracting the address information from inputs and outputs, we can construct a directed transaction graph.
