@@ -1,5 +1,3 @@
-# Advanced permissions
+# The famous and the far-right figures
 
-{% hint style="info" %}
-**Good to know:** your product docs aren't just a reference of all your features! use them to encourage folks to perform certain actions and discover the value in your product.
-{% endhint %}
+To characterize clusters of addresses (i.e., wallets), we collected well-known addresses and their owner information on the Internet. Those include the right-wing figures' addresses and top-wealthy addresses scraped from famous gambling or currency exchange websites. For the right-wing party, we compiled a list of 47 right-wing figures, consisting of websites and famous people, e.g., Amren.com, Dailystormer.eu, VDARE, Nick Fuentes, etc; for the gambling or currency exchange websites, there are 382 well-known websites in our database despite some were forced to close recently. To name a few, Becoin.ag, Bitstamp.net, PocketDice.io, etc.

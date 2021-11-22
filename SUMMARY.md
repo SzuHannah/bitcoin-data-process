@@ -6,7 +6,7 @@
 
 * [Blockchain](background/blockchain.md)
 * [Bitcoin transaction graph](background/bitcoin-transaction-graph.md)
-* [Advanced permissions](background/advanced-permissions.md)
+* [The famous and the far-right figures](background/advanced-permissions.md)
 
 ## Fundamentals
 
