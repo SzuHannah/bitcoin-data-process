@@ -20,4 +20,4 @@ Transitive closure is a heuristic that clusters addresses that can be spent toge
 
 ![Figure 3 Derived wallet graph](../.gitbook/assets/wallet-wallet-graph)
 
-If we define one user as an entity that can control the addresses, compared to the address graph, one node in the wallet graph is closer to the concept of one user in reality. Thus, the aggregation not only largely accelerates computation efficiency but it has the potential to make user transaction behavior study more interpretable.
+If we define one user as an entity that can control his/her addresses, compared to the address graph, one node in the wallet graph is closer to the concept of one user in reality. Thus, the aggregation not only largely accelerates computation efficiency but it has the potential to make user transaction behavior studies more interpretable.
