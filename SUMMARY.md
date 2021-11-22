@@ -5,9 +5,7 @@
 ## Background
 
 * [Blockchain](background/blockchain.md)
-* [Bitcoin transaction graph](background/bitcoin-transaction-graph/README.md)
-  * [Address-Transaction-Address Graph](background/bitcoin-transaction-graph/address-transaction-address-graph.md)
-  * [Wallet-Wallet Graph](background/bitcoin-transaction-graph/wallet-wallet-graph.md)
+* [Bitcoin transaction graph](background/bitcoin-transaction-graph.md)
 * [Advanced permissions](background/advanced-permissions.md)
 
 ## Fundamentals
