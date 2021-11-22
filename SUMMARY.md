@@ -8,12 +8,12 @@
 * [Bitcoin transaction graph](background/bitcoin-transaction-graph.md)
 * [The famous and the far-right figures](background/advanced-permissions.md)
 
-## Fundamentals
+## Methods and Data
 
-* [Projects](fundamentals/projects.md)
-* [Members](fundamentals/members.md)
-* [Task Lists](fundamentals/task-lists.md)
-* [Tasks](fundamentals/tasks.md)
+* [Architecture design](methods-and-data/projects.md)
+* [Members](methods-and-data/members.md)
+* [Task Lists](methods-and-data/task-lists.md)
+* [Tasks](methods-and-data/tasks.md)
 
 ## Use Cases
 
