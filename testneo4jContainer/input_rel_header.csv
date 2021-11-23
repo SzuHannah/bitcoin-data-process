@@ -1,0 +1,1 @@
+txindex:IGNORE,value:float,tran_type:IGNORE,blockID:IGNORE,addr:IGNORE,:START_ID(Wallet),:END_ID(Transaction)
