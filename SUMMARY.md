@@ -11,7 +11,7 @@
 ## Methods and Data
 
 * [Architecture design](methods-and-data/projects.md)
-* [Members](methods-and-data/members.md)
+* [Algorithms](methods-and-data/members.md)
 * [Task Lists](methods-and-data/task-lists.md)
 * [Tasks](methods-and-data/tasks.md)
 

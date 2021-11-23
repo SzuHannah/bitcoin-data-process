@@ -6,11 +6,11 @@ Further, each JSON was split into multiple CSV files by the CSV Parser, and we p
 
 The addresses.csvs were uniquely imported into the database such that we created an address-ID lookup table. Originally, addresses were represented in long strings within transactions. Thus, we assigned address IDs to replace the address strings for computation efficiency. As we were not interested in the all-time transaction pattern, we let transaction tables inherit the timestamp information from block tables for later time-range filteration.
 
-![Figure 4 Architecture design](<../.gitbook/assets/architecture design>)
+![Figure 4 Architecture of the parser, file and database system](<../.gitbook/assets/architecture design>)
 
-The address-ID lookup table and transaction tables with mapped address IDs were then exported. We built an Edge-list Parser with Python to read in transaction tables and create edge lists that represented the spent-together history of addresses. That is, there would be an edge between address ID = 1 and address ID = 2 if they could be spent together; thus, every transaction could produce one edge list. The Address Clusterizer then took the address-ID lookup table as an input and streamed the edge-lists through to link address-IDs into clusters of wallets. As a result, the Clusterizer would generate an addressID-walletID lookup table. The Address Clusterizer was implemented with Weighted Quick Union with Path Compression (WQUPC) algorithm that were described in the Algorithm section.
+The address-ID lookup table and transaction tables with mapped address IDs were then exported. We built an Edge-list Parser with Python to read in transaction tables and create edge lists that represented the spent-together history of addresses. That is, there would be an edge between address ID = 1 and address ID = 2 if they could be spent together; thus, every transaction could produce one edge list. The Address Clusterizer then took the address-ID lookup table as an input and streamed the edge-lists through to link address-IDs into clusters of wallets. As a result, the Clusterizer would generate an addressID-walletID lookup table. The Address Clusterizer was implemented with Weighted Quick Union with Path Compression (WQUPC) algorithm that would be described in the Algorithm section.
 
-After the addressID-walletID lookup table was generated, we inserted it back into the SQLite database. Further, we mutated a walletID column and mapped the walletIDs for each transaction table. Then, the transaction tables were exported and imported into a Neo4j graph database. Every row of the transaction tables was represented in a walletID-transactionID-walletID graph illustrated in [Figure 2](projects.md#fig2). We leveraged the built-in graph database commands to merge the inputs and outputs into one edge called “sent\_to” using the heuristic described in [Figure 3](projects.md#fig3). This simplified walletID-walletID graph was further filtered for a time range of our interest. Finally, the wallet-wallet graph was grouped by "sender" and "receiver" (operated in a SQLite db), i.e., transaction values on the directed edges between a unique pair of "sender" and "receiver" were summed up ([Figure 5](#fig5)). This tidy wallet-wallet graph was later used for analysis.
+After the addressID-walletID lookup table was generated, we inserted it back into the SQLite database. Further, we mutated a walletID column and mapped the walletIDs for each transaction table. Then, the transaction tables were exported and imported into a Neo4j graph database. Every row of the transaction tables was represented in a walletID-transactionID-walletID graph illustrated in [Figure 2](projects.md#fig2). We leveraged the built-in graph database commands to merge the inputs and outputs into one edge called “sent\_to” using the heuristic described in [Figure 3](projects.md#fig3). This simplified walletID-walletID graph was further filtered for a time range of our interest. Finally, the wallet-wallet graph was grouped by "sender" and "receiver" (operated in a SQLite db), i.e., transaction values on the directed edges between a unique pair of "sender" and "receiver" were summed up ([Figure 5](projects.md#fig5)). This tidy wallet-wallet graph was later used for analysis.
 
 ![Figure 5 Group by sender and receiver](../.gitbook/assets/group-by-sent-receive.jpg)
 
@@ -51,7 +51,6 @@ with "match (w1:Wallet)-[i:INPUT]->(t:Transaction)-[o:OUTPUT]->(w2:Wallet)
              call apoc.export.csv.query(query,"sent_to_2017.csv",{})
              YIELD file, source, format, nodes, relationships, properties, time, rows, batchSize, batches, done, data
              RETURN file, source, format, nodes, relationships, properties, time, rows, batchSize, batches, done, data;
-
 ```
 {% endtab %}
 
@@ -63,7 +62,6 @@ docker run --name wallettxdb -p7474:7474 -p7687:7687  -d -v /scratch/bitcoin/imp
 # import the grouped wallet-wallet transaction data
 exoprt DATA = imoprt
 ./bin/neo4j-admin import --database graph.db --nodes:Wallet "$DATA/wallet_header.csv,$DATA/wallet.csv" --relationships:SENT_TO "$DATA/groupedtx2017_header.csv,$DATA/groupedtx2017.csv" --high-io=true --ignore-duplicate-nodes=true
-
 ```
 {% endtab %}
 {% endtabs %}
