@@ -14,7 +14,7 @@ After the addressID-walletID lookup table was generated, we inserted it back int
 
 ![Figure 5 Group by sender and receiver](../.gitbook/assets/group-by-sent-receive.jpg)
 
-### Commnads for construction Neo4j database
+### Commnads for constructing Neo4j databases
 
 {% tabs %}
 {% tab title="run neo4j with docker" %}
