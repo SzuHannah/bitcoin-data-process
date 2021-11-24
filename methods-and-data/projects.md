@@ -21,13 +21,13 @@ After the addressID-walletID lookup table was generated, we inserted it back int
 sample data for import into neo4j can be found [here](https://github.com/SzuHannah/bitcoin-data-process/tree/main/neo4jContainer)
 
 ```
-# initiate a neo4j db called bitcoindb 
+// initiate a neo4j db called bitcoindb 
 docker run --name bitcoindb -p7474:7474 -p7687:7687  -d -v /scratch/bitcoin/import/neo4jContainer:/var/lib/neo4j/import  -v bitcoindbdata:/data -v bitcoindblogs:/logs -v /scratch/bitcoin/plugins:/var/lib/neo4j/plugins  --env NEO4J_AUTH=neo4j/test --env NEO4J_dbms_memory_heap_initial__size=24g --env NEO4J_dbms_memory_heap_max__size=24g --env NEO4J_dbms_memory_pagecache_size=28g --env NEO4J_apoc_export_file_enabled=true --env NEO4J_apoc_import_file_enabled=true --env NEO4J_apoc_import_file_use__neo4j__config=true --env NEO4J_dbms_security_procedures_unrestricted=apoc.*,gds.* --env NEO4J_dbms_recovery_fail__on__missing__files=false --env NEO4JLABS_PLUGINS=\[\"apoc\"\,\"graph-data-science\"\] neo4j:latest
 
-#execute and use docker command interface
+// execute and use docker command interface
 docker start bitcoindb
 docker exec -it bitcoindb bash
-#go to import/ to check data is ready for import
+// go to import/ to check data is ready for import
 cd import 
 ```
 {% endtab %}
@@ -41,10 +41,10 @@ export DATA=import
 
 {% tab title="add sent_to relationship to from wallet-wallet graph" %}
 ```
-# add sent_to relationship and remove transaction node and the input output relationship
+// add sent_to relationship and remove transaction node and the input output relationship
 cypher-shell "call apoc.periodic.iterate('match (w1:Wallet)-[i:INPUT]->(t:Transaction)-[o:OUTPUT]->(w2:Wallet) return w1,i,t,o,w2','create (w1)-[s:SENT_TO{time:t.timestamp,value:(i.value/t.inputTotal)*o.value}]->(w2) detach delete t',{batchSize:10000,iterateList:true,parallel:false});"
 
-# export wallet-wallet graph (filter transactions after 2017.01)
+// export wallet-wallet graph (filter transactions after 2017.01)
 with "match (w1:Wallet)-[i:INPUT]->(t:Transaction)-[o:OUTPUT]->(w2:Wallet)
              where t.timestamp > datetime({year:2017, month: 1})
              return w1.walletID as sentwallet, w2.walletID as receivewallet, o.value as value, t.timestamp as time" as query
@@ -56,10 +56,10 @@ with "match (w1:Wallet)-[i:INPUT]->(t:Transaction)-[o:OUTPUT]->(w2:Wallet)
 
 {% tab title="construct a db for the wallet-wallet graph" %}
 ```
-# initiate db
+// initiate db
 docker run --name wallettxdb -p7474:7474 -p7687:7687  -d -v /scratch/bitcoin/import/neo4jContainer:/var/lib/neo4j/import  -v wallettxdbdata:/data -v wallettxdblogs:/logs -v /scratch/bitcoin/plugins:/var/lib/neo4j/plugins  --env NEO4J_AUTH=neo4j/pass --env NEO4J_dbms_memory_heap_initial__size=24g --env NEO4J_dbms_memory_heap_max__size=24g --env NEO4J_dbms_memory_pagecache_size=28g --env NEO4J_apoc_export_file_enabled=true --env NEO4J_apoc_import_file_enabled=true --env NEO4J_apoc_import_file_use__neo4j__config=true --env NEO4J_dbms_security_procedures_unrestricted=apoc.*,gds.* --env NEO4J_dbms_recovery_fail__on__missing__files=false --env NEO4JLABS_PLUGINS=\[\"apoc\",\"graph-data-science\"\] neo4j:3.5.21
 
-# import the grouped wallet-wallet transaction data
+// import the grouped wallet-wallet transaction data
 exoprt DATA = imoprt
 ./bin/neo4j-admin import --database graph.db --nodes:Wallet "$DATA/wallet_header.csv,$DATA/wallet.csv" --relationships:SENT_TO "$DATA/groupedtx2017_header.csv,$DATA/groupedtx2017.csv" --high-io=true --ignore-duplicate-nodes=true
 ```

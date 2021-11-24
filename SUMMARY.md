@@ -12,8 +12,8 @@
 
 * [Architecture design](methods-and-data/projects.md)
 * [Algorithms](methods-and-data/members.md)
-* [Task Lists](methods-and-data/task-lists.md)
-* [Tasks](methods-and-data/tasks.md)
+* [Data](methods-and-data/task-lists.md)
+* [Run PPR in Neo4j](methods-and-data/tasks.md)
 
 ## Use Cases
 
