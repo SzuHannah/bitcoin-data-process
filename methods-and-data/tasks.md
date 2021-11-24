@@ -1,10 +1,10 @@
 # Run PPR in Neo4j
 
-To investigate the behaviors of the wallets of our interest, we leveraged the PPR algorithm described in the "Algorithms" section. In particular, we examined the down-stream and up-stream PPR, the former uncovered who those wallets often sent money to, while the latter helped us understand who the wallets often received money from.
+To investigate the behaviors of the wallets of our interest, we leveraged the PPR algorithm described in the "Algorithms" section. In particular, we examined the downstream and upstream PPR, the former uncovered who those wallets often sent money to, while the latter helped us understand who the wallets often received money from.
 
-Down-stream PPR and up-stream PPR are similar, here we would mainly illustrate the setting for the down-stream PPR.
+Downstream PPR and upstream PPR are similar, here we would mainly illustrate the setting for the downstream PPR.
 
-(1) create an in-memory graph that encodes SENT\_TO as SENT (for up-stream, encodes SENT_TO as RECEIVE\_FROM_)&#x20;
+(1) create an in-memory graph that encodes SENT\_TO as SENT (for upstream, encodes SENT_TO as RECEIVE\_FROM_)&#x20;
 
 ```
 //down-stream
