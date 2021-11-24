@@ -18,7 +18,7 @@ The final wallet-wallet graph database used for analysis contained the following
 | Input     | transaction value |
 | Output    | transaction value |
 
-After the database was constructed, we filtered to keep transaction data after January 2017 (until June 2020), due to the fact that it was believed that bitcoin started to become popular among the right-wing activists after 2017.
+After the database was constructed, we filtered to keep transaction data after January 2017 (until June 2020). It was believed that bitcoin started to become popular among the right-wing activists after 2017.
 
 As PPR runs faster on a more connected graph, we removed self-loops and nodes whose total degree ≤ 1. Eventually, the wallet-wallet graph contains 206,637,177 nodes and 503,589,462 edges.
 
