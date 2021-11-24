@@ -9,7 +9,7 @@ The address clustering algorithm can be implemented with WQUPC, described in Alg
 
 Input requirements:
 
-(i) An edge list that recorded addresses that were ever spent together such that we could read in the edge list to do the Union operation (e.g. if address 1 and address 2 were spent together, we will do Union(1,2))
+(i) An edge list that recorded addresses that were ever spent together: we could read in the edge list to do the Union operation (e.g. if address 1 and address 2 were spent together, we will do Union(1,2))
 
 (ii) A list that recorded the parent of each node, and a list that recorded the rank of each node
 
@@ -46,7 +46,7 @@ def Find-Set(x):
 
 ### Approximated Personalized PageRank (PPR)
 
-One way to study entities' transaction behavior is through investigating upstream/downstream critical wallets for those famous wallets in the transaction network. This is equivalent to finding vertices that are most relevant to a specific node in a graph. This kind of problem setup is one of the applications for Personalized PageRank (PPR). As the bitcoin transaction network is large, and running PPR on the whole graph would be inefficient, we adopted a faster modification of PPR, the approximate PPR algorithm\[^1], to solve the problem.
+One way to study entities' transaction behavior is through investigating upstream/downstream critical wallets for those famous wallets in the transaction network, which is equivalent to finding vertices that are most relevant to a specific node in a graph. This kind of problem setup is one of the applications for Personalized PageRank (PPR). However, the bitcoin transaction network is massive, and running PPR on the whole graph would be inefficient. Therefore, to solve the problem, we adopted a faster modification of PPR, the approximate PPR algorithm\[^1].
 
 {% hint style="info" %}
 **Algorithm 2: Approximate Personalized PageRank Algorithm**
