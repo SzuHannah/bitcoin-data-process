@@ -14,7 +14,8 @@ Input requirements:
 (ii) A list that recorded the parent of each node, and a list that recorded the rank of each node
 
 Note: p in the following procedure means parent
-{% endhint %}
+
+**pseudo-code:**
 
 ```
 def Make-Set(x):
@@ -36,6 +37,7 @@ def Find-Set(x):
     x.p = Find-Set(x.p)
     return x.p
 ```
+{% endhint %}
 
 | Table 1 Steps of assigning wallet IDs to addresses                                                                                                                                                          |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -50,6 +52,8 @@ One way to study entities' transaction behavior is through investigating upstrea
 **Algorithm 2: Approximate Personalized PageRank Algorithm**
 
 Input requirement: undirected graph G, PPR vector $$p \in [0,1]^{N}$$, preference vector 𝜋, teleportation constant 𝛼, and tolerance 𝜀
+
+**pseudo-code:**
 
 **Initialize **$$p \leftarrow 0$$, $$r \leftarrow \pi$$, $$\alpha' \leftarrow \alpha/(2-\alpha)$$
 
