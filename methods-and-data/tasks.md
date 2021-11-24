@@ -15,11 +15,11 @@ call gds.graph.create('txgraph-upstream','Wallet',{RECEIVE_FROM:{type:'SENT_TO',
 
 (2) for eachwallet of our interest, treat it as the seed node, and run PPR with 𝛼=0.15, and iteration=20&#x20;
 
+(3) return wallet IDs with PPR score ranked top 10
+
 ```
 match(w:Wallet) where w.walletID in ['7480','2096025','5279538','327466217','73091417','110567775','781745','347248','155260033','168586723','178055641','183649279'] with collect(w) as seeds call gds.pageRank.stream('txgraph',{maxIterations:20,dampingFactor:0.85,sourceNodes:seeds}) yield nodeId, score return gds.util.asNode(nodeId).walletID as walletID, score order by score desc limit 30;
 
 //if want to export to csv
 with "match(w:Wallet) where w.walletID in ['7480','2096025','5279538','327466217','73091417','110567775','781745','347248','155260033','168586723','178055641','183649279'] with collect(w) as seeds call gds.pageRank.stream('txgraph',{maxIterations:20,dampingFactor:0.85,sourceNodes:seeds}) yield nodeId, score return gds.util.asNode(nodeId).walletID as walletID, score order by score desc limit 30;" as query call apoc.export.csv.query(query,"right_activist_downstreamppr.csv",{}) yield file, source, format, nodes, relationships, properties, time, rows, batchSize, batches, done, data return file, source, format, nodes, relationships, properties, time, rows, batchSize, batches, done, data;
 ```
-
-(3) return wallet IDs with PPR score ranked top 10
