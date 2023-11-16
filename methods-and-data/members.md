@@ -55,19 +55,19 @@ Input requirement: undirected graph G, PPR vector $$p \in [0,1]^{N}$$, preferenc
 
 **pseudo-code:**
 
-**Initialize **$$p \leftarrow 0$$, $$r \leftarrow \pi$$, $$\alpha' \leftarrow \alpha/(2-\alpha)$$
+**Initialize** $$p \leftarrow 0$$, $$r \leftarrow \pi$$, $$\alpha' \leftarrow \alpha/(2-\alpha)$$
 
-**while **$$\exists u \in V$$such that $$r_{u} \geq \epsilon d_{u}$$ **do**
+**while** $$\exists u \in V$$such that $$r_{u} \geq \epsilon d_{u}$$ **do**
 
 &#x20;   uniformly sample a vertex u satisfying $$r_{u} \geq \epsilon d_{u}$$
 
-&#x20;   $$p_{u} \leftarrow p_{u} + \alpha' r_{u}$$****
+&#x20;   $$p_{u} \leftarrow p_{u} + \alpha' r_{u}$$
 
-**     for** $$v:(u,v) \in E$$ do
+&#x20;    **for** $$v:(u,v) \in E$$ do
 
 &#x20;       $$r_{u} \leftarrow r_{v} + (1-\alpha')r_{u}/2d_{u}$$​
 
-**     end for**
+&#x20;    **end for**
 
 &#x20;   $$r_{u} \leftarrow (1-\alpha')r_{u}/2$$
 
